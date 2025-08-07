@@ -1,0 +1,5 @@
+# Binary & build artefacts
+*.zip
+node_modules/
+dist/
+.DS_Store
