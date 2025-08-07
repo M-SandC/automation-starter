@@ -1,0 +1,14 @@
+name: Sync upstream toolkits
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Monday 06:00 UTC
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: chmod +x swish-click-toolkit-download.sh && ./swish-click-toolkit-download.sh
+      - run: git config --global user.email "bot@users.noreply.github.com"
+      - run: git config --global user.name "Auto Updater"
+      - run: git add -A && git commit -m "Weekly toolkit refresh" || echo "No changes"
+      - uses: stefanzweifel/git-auto-commit-action@v5
